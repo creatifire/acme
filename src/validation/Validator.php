@@ -17,24 +17,24 @@ class Validator
 
                     switch ($exploded[0]) {
                         case 'min':
-                          $min = $exploded[1];
-                          if (!Valid::stringType()->length($min)->Validate($_REQUEST[$name])) {
+                            $min = $exploded[1];
+                            if (!Valid::stringType()->length($min)->Validate($_REQUEST[$name])) {
                               $errors[] = $name . " must be at least " . $min . " characters long!";
-                          }
-                          break;
+                            }
+                            break;
 
                         case 'email':
-                          if (!Valid::email()->validate($_REQUEST[$name])) {
+                            if (!Valid::email()->validate($_REQUEST[$name])) {
                               $errors[] = $name . " must be a valid email address.";
-                          }
-                          break;
+                            }
+                            break;
 
                         case 'equalTo':
-                          if (!Valid::equals($_REQUEST[$name])->validate($_REQUEST[$exploded[1]])) {
+                            if (!Valid::equals($_REQUEST[$name])->validate($_REQUEST[$exploded[1]])) {
                               $errors[] = $name . " must equal " . $exploded[1];
-                          }
+                            }
                         default:
-                      }
+                    }
                 }
             } else {
                 $errors[] = "No value found for " . $name;
