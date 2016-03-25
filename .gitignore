@@ -5,3 +5,6 @@ twig-templates/
 vendor/
 .vagrant/
 .env
+vagrant/
+resources/
+Vagrantfile
