@@ -15,4 +15,9 @@ class PageController extends BaseController
         // $_SESSION['test'] = "<strong>I hope this works</strong>";
         echo $this->blade->render('home');
     }
+
+    public function getShowPage()
+    {
+        echo 'foo';
+    }
 }
