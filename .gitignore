@@ -8,5 +8,4 @@ vendor/
 vagrant/
 resources/
 Vagrantfile
-
 phinx.yml

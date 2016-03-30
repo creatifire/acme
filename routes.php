@@ -4,4 +4,16 @@ $router->map('GET', '/', 'Acme\Controllers\PageController@getShowHomePage', 'hom
 $router->map('GET', '/register', 'Acme\Controllers\RegisterController@getShowRegisterPage', 'register');
 $router->map('POST', '/register', 'Acme\Controllers\RegisterController@postShowRegisterPage', 'register_post');
 $router->map('GET', '/login', 'Acme\Controllers\RegisterController@getShowLoginPage', 'login');
-$router->map('GET', '/about', 'Acme\Controllers\PageController@getShowPage', 'generic_page' );
+$router->map('GET', '/page-not-found', 'Acme\Controllers\PageController@getShow404', '404' );
+
+$router->map('GET', '/slug', function(){
+    $slug = new Cocur\Slugify\Slugify();
+    echo $slug->slugify('About Acme');
+});
+
+$router->map('GET', '/[*]', 'Acme\Controllers\PageController@getShowPage', 'generic_page' );
+// $router->map('GET', '/test', function() {
+//     $testimonials = Acme\models\User::find(2)->testimonials()->get();
+//     // $testimonials = $user->testimonials()->get();
+//     dd($testimonials);
+// });
