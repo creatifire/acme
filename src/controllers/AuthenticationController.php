@@ -43,4 +43,18 @@ class AuthenticationController extends BaseController
             exit();
         }
     }
+
+    public function getLogOut()
+    {
+        unset($_SESSION['user']);
+        session_destroy();
+        header('Location: /login');
+        exit();
+    }
+
+    public function getTestUser()
+    {
+        $user = $_SESSION['user'];
+        dd($user->testimonials);
+    }
 }
