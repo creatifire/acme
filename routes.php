@@ -8,7 +8,6 @@ $router->map('POST', '/register', 'Acme\Controllers\RegisterController@postShowR
 $router->map('GET', '/login', 'Acme\Controllers\AuthenticationController@getShowLoginPage', 'login');
 $router->map('POST', '/login', 'Acme\Controllers\AuthenticationController@postShowLoginPage', 'login_post');
 $router->map('GET', '/logout', 'Acme\Controllers\AuthenticationController@getLogOut', 'logout');
-$router->map('GET', '/testuser', 'Acme\Controllers\AuthenticationController@getTestUser', 'testuser');
 
 // Page Routes
 $router->map('GET', '/', 'Acme\Controllers\PageController@getShowHomePage', 'home');
