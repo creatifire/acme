@@ -5,6 +5,7 @@ namespace Acme\controllers;
 use Acme\Models\User;
 use Acme\Validation\Validator;
 use duncan3dc\Laravel\BladeInstance;
+use Acme\Auth\LoggedIn;
 
 class AuthenticationController extends BaseController
 {
@@ -54,7 +55,7 @@ class AuthenticationController extends BaseController
 
     public function getTestUser()
     {
-        $user = $_SESSION['user'];
-        dd($user->testimonials);
+        // $user = $_SESSION['user'];
+        dd(LoggedIn::user()->first_name);
     }
 }

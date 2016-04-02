@@ -45,6 +45,7 @@ class RegisterController extends BaseController
 
         $user->save();
 
-        echo 'Posted!';
+        header('Location: /success');
+        exit();
     }
 }
