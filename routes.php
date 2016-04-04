@@ -3,6 +3,7 @@
 // Registration Routes
 $router->map('GET', '/register', 'Acme\Controllers\RegisterController@getShowRegisterPage', 'register');
 $router->map('POST', '/register', 'Acme\Controllers\RegisterController@postShowRegisterPage', 'register_post');
+$router->map('GET', '/verify-account', 'Acme\Controllers\RegisterController@getVerifyAccount', 'verify_account');
 
 // login/logout Routes
 $router->map('GET', '/login', 'Acme\Controllers\AuthenticationController@getShowLoginPage', 'login');
