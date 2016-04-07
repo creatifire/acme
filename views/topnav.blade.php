@@ -17,9 +17,29 @@
                 <li><a href="/testimonials">Testimonials</a></li>
                 @if(Acme\auth\LoggedIn::user())
                     <li><a href="/add-testimonial">Add Testimonial</a></li>
-                    <li><a href="/logout">Log Out</a></li>
+                @endif
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if(Acme\auth\LoggedIn::user())
+                    <li class="dropdown">
+                        <a id="dLabel" href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                      <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li><a href="#">Edit Page</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="/logout">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                         Logout
+                    </a></li>
                 @else
-                    <li><a href="/login">Log In</a></li>
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <li><a href="/login">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                         Login
+                    </a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->
