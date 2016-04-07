@@ -23,7 +23,7 @@ sudo apt-get install -y zip unzip
 #sudo add-apt-repository ppa:ondrej/php-7.0
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
-sudo apt-get install -y php7.0 php7.0-fpm php7.0-gd php7.0-curl php7.0-mysql php7.0-pgsql php7.0-json php7.0-mbstring
+sudo apt-get install -y php7.0 php7.0-fpm php7.0-gd php7.0-curl php7.0-mysql php7.0-pgsql php7.0-json php7.0-mbstring php7.0-xml
 
 # install nginx, postgres, and git
 sudo apt-get install -y nginx postgresql postgresql-contrib git
