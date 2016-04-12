@@ -7,15 +7,23 @@ use Acme\Validation\Validator;
 use duncan3dc\Laravel\BladeInstance;
 use Acme\Auth\LoggedIn;
 
+
 class AuthenticationController extends BaseController
 {
     public function getShowLoginPage()
     {
-        echo $this->blade->render('login');
+        echo $this->blade->render('login', [
+            'signer' => $this->signer,
+        ]);
     }
 
     public function postShowLoginPage()
     {
+        if (!$this->signer->validateSignature($_POST['_token'])) {
+            header('HTTP/1.0 400 Bad Request');
+            exit;
+        }
+
         $okay = true;
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
@@ -43,7 +51,9 @@ class AuthenticationController extends BaseController
             exit();
         } else {
             $_SESSION['msg'] = ["Invalid login"];
-            echo $this->blade->render('login');
+            echo $this->blade->render('login', [
+                'signer' => $this->signer,
+            ]);
             unset($_SESSION['msg']);
             exit();
         }
