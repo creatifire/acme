@@ -27,7 +27,7 @@
                             <span class="caret"></span>
                         </a>
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li><a href="#">Edit Page</a></li>
+                        <li><a class="menu-item" onclick="makePageEditable(this)" href="#">Edit Page</a></li>
                       </ul>
                     </li>
                     <li><a href="/logout">
