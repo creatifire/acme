@@ -12,7 +12,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/about-acme">About</a></li>
                 <li><a href="/register">Register</a></li>
                 <li><a href="/testimonials">Testimonials</a></li>
                 @if(Acme\auth\LoggedIn::user())
@@ -20,7 +20,7 @@
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                @if(Acme\auth\LoggedIn::user())
+                @if ((Acme\Auth\LoggedIn::user()) && (Acme\Auth\LoggedIn::user()->access_level == 2))
                     <li class="dropdown">
                         <a id="dLabel" href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
@@ -30,6 +30,11 @@
                         <li><a href="#">Edit Page</a></li>
                       </ul>
                     </li>
+                    <li><a href="/logout">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                         Logout
+                    </a></li>
+                @elseif (Acme\Auth\LoggedIn::user())
                     <li><a href="/logout">
                         <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                          Logout
