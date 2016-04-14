@@ -28,6 +28,8 @@
                         </a>
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li><a class="menu-item" onclick="makePageEditable(this)" href="#">Edit Page</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/admin/page/add">Add a Page</a></li>
                       </ul>
                     </li>
                     <li><a href="/logout">

@@ -13,6 +13,11 @@
             <article class="admin-hidden">
                 <a href="#!" class="btn btn-primary" onclick="saveEditedPage()">Save</a>
                 <a href="#!" class="btn btn-info" onclick="turnOffEditing()">Cancel</a>
+                @if($page_id == 0)
+                    <br>
+                    <br>
+                    <input type="text" name="browser_title" placeholder="Enter browser title">
+                @endif
             </article>
             <input type="hidden" name="thedata" id="thedata">
             <input type="hidden" name="old" id="old">
@@ -77,20 +82,17 @@
             $("#thedata").val(pagedata);
             var options = { success: showResponse };
             $("#editpage").unbind('submit').ajaxSubmit(options);
-            $("#old").val('');
-            turnOffEditing();
             return false;
         }
 
         function showResponse(responseText, statusText, xhr, $form)
         {
-            // if (responseText == 'OK'){
-            //     $("#old").val('');
-            //     turnOffEditing();
-            // } else {
-            //     alert(responseText);
-            // }
-            alert("Called Save!");
+            if (responseText == "OK") {
+                $("#old").val('');
+                turnOffEditing();
+            } else {
+                alert(responseText);
+            }
         }
     @endif
 </script>
