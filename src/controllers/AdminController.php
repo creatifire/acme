@@ -9,6 +9,10 @@ use Cocur\Slugify\Slugify;
 
 class AdminController extends BaseController
 {
+    /**
+     * Save edited page; called via ajaz
+     * @return string
+     */
     public function postSavePage()
     {
         $okay = true;
