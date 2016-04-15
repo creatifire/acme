@@ -33,6 +33,16 @@ class Validator
                             if (!Valid::equals($_REQUEST[$name])->validate($_REQUEST[$exploded[1]])) {
                               $errors[] = $name . " must equal " . $exploded[1];
                             }
+                            break;
+
+                        case 'unique':
+                            $model = "Acme\\models\\" . $exploded[1];
+                            $table = new $model;
+                            $results = $table->where($name, '=', $_REQUEST[$name])->get();
+                            foreach($results as $item) {
+                                $errors[] = $_REQUEST[$name] . "already exists in this system!";
+                            }
+                            break;
                         default:
                     }
                 }

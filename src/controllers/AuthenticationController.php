@@ -5,16 +5,30 @@ namespace Acme\controllers;
 use Acme\Models\User;
 use Acme\Validation\Validator;
 use duncan3dc\Laravel\BladeInstance;
+use Acme\Auth\LoggedIn;
+
 
 class AuthenticationController extends BaseController
 {
+
+    /**
+     * Shows the login page
+     * @return html string via blade
+     */
     public function getShowLoginPage()
     {
-        echo $this->blade->render('login');
+        echo $this->blade->render('login', [
+            'signer' => $this->signer,
+        ]);
     }
 
     public function postShowLoginPage()
     {
+        if (!$this->signer->validateSignature($_POST['_token'])) {
+            header('HTTP/1.0 400 Bad Request');
+            exit;
+        }
+
         $okay = true;
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
@@ -32,13 +46,19 @@ class AuthenticationController extends BaseController
             $okay = false;
         }
 
+        if ($user->active == 0) {
+            $okay = false;
+        }
+
         if ($okay) {
             $_SESSION['user'] = $user;
             header('Location: /');
             exit();
         } else {
             $_SESSION['msg'] = ["Invalid login"];
-            echo $this->blade->render('login');
+            echo $this->blade->render('login', [
+                'signer' => $this->signer,
+            ]);
             unset($_SESSION['msg']);
             exit();
         }
@@ -52,9 +72,4 @@ class AuthenticationController extends BaseController
         exit();
     }
 
-    public function getTestUser()
-    {
-        $user = $_SESSION['user'];
-        dd($user->testimonials);
-    }
 }

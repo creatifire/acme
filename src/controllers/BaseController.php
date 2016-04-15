@@ -4,12 +4,18 @@ namespace Acme\controllers;
 
 // use Acme\Validation\Validator;
 use duncan3dc\Laravel\BladeInstance;
+use Kunststube\CSRFP\SignatureGenerator;
 
 class BaseController
 {
     protected $blade;
+    protected $signer;
+
     public function __construct()
     {
-        $this->blade = new BladeInstance("/vagrant/views", "/vagrant/cache/views");
+        $this->signer = new SignatureGenerator(getenv('CSRF_SECRET'));
+        // $this->signer = new SignatureGenerator("afasfasf");
+        // $this->blade = new BladeInstance("/vagrant/views", "/vagrant/cache/views");
+        $this->blade = new BladeInstance(getenv('VIEWS_DIRECTORY'), getenv('CACHE_DIRECTORY'));
     }
 }
